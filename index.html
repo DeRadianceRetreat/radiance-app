@@ -23,9 +23,10 @@
       font-family: 'Poppins', sans-serif;
       background: #ffffff;
       color: #333;
+      scroll-behavior: smooth;
     }
 
-    /* Navigation */
+    /* Sticky Navigation */
     nav {
       background: #ffffff;
       padding: 15px 20px;
@@ -34,6 +35,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 10px rgba(212, 138, 138, 0.15);
     }
     nav a {
       color: #d48a8a;
@@ -47,6 +49,19 @@
     nav a:hover {
       color: #b56f6f;
       border-bottom: 2px solid #d48a8a;
+    }
+
+    /* Smooth Scroll Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Hero Section */
@@ -97,13 +112,20 @@
       text-align: center;
     }
 
-    /* Services */
-    ul {
-      list-style: none;
-      padding: 0;
-      line-height: 1.8;
-      font-size: 18px;
-      color: #444;
+    /* Luxury Service Cards */
+    .service-card {
+      background: #fff;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 12px;
+      border: 2px solid #f3d6d6;
+      box-shadow: 0 4px 12px rgba(212, 138, 138, 0.15);
+      transition: 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(212, 138, 138, 0.35);
+      border-color: #d48a8a;
     }
 
     /* Gallery */
@@ -163,6 +185,35 @@
       text-decoration: none;
       margin: 0 5px;
     }
+
+    /* Floating Buttons */
+    .floating-buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 200;
+    }
+    .float-btn {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e7b7b7, #d48a8a);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(212, 138, 138, 0.4);
+      transition: 0.3s;
+    }
+    .float-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 18px rgba(212, 138, 138, 0.6);
+    }
   </style>
 </head>
 
@@ -175,27 +226,26 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <section class="hero" id="home">
+  <section class="hero fade-in" id="home">
     <h1>De Radiance Retreat</h1>
     <p>Luxury Beauty & Wellness Treatments in Lower Darwen — Facials, Hijama, Massage, Nails, Waxing & More.</p>
     <a href="#contact"><button>Book Appointment</button></a>
   </section>
 
-  <section id="services">
+  <section id="services" class="fade-in">
     <h2>Our Luxury Services</h2>
-    <ul>
-      <li><strong>Facials</strong> — Glow-boosting, rejuvenating treatments.</li>
-      <li><strong>Manicure & Pedicure</strong> — Luxury nail care & hydration.</li>
-      <li><strong>Waxing</strong> — Smooth, long-lasting results.</li>
-      <li><strong>Body Massages</strong> — Relaxation, deep tissue & aromatherapy.</li>
-      <li><strong>Threading</strong> — Precision brow shaping.</li>
-      <li><strong>Lashlift & Tint</strong> — Natural enhancement.</li>
-      <li><strong>Hopi Ear Candling</strong> — Relaxing ear therapy.</li>
-      <li><strong>Hijama Cupping Therapy</strong> — Traditional detox treatment.</li>
-    </ul>
+
+    <div class="service-card"><strong>Facials</strong> — Glow-boosting, rejuvenating treatments.</div>
+    <div class="service-card"><strong>Manicure & Pedicure</strong> — Luxury nail care & hydration.</div>
+    <div class="service-card"><strong>Waxing</strong> — Smooth, long-lasting results.</div>
+    <div class="service-card"><strong>Body Massages</strong> — Relaxation, deep tissue & aromatherapy.</div>
+    <div class="service-card"><strong>Threading</strong> — Precision brow shaping.</div>
+    <div class="service-card"><strong>Lashlift & Tint</strong> — Natural enhancement.</div>
+    <div class="service-card"><strong>Hopi Ear Candling</strong> — Relaxing ear therapy.</div>
+    <div class="service-card"><strong>Hijama Cupping Therapy</strong> — Traditional detox treatment.</div>
   </section>
 
-  <section id="gallery" class="gallery">
+  <section id="gallery" class="gallery fade-in">
     <h2>Gallery</h2>
 
     <img src="https://i.ibb.co/Xx4NxBjQ/14.png" alt="">
@@ -217,7 +267,7 @@
 
   </section>
 
-  <section id="contact">
+  <section id="contact" class="fade-in">
     <h2>Contact & Booking</h2>
     <form>
       <input type="text" placeholder="Your Name" required>
@@ -234,6 +284,13 @@
     <a href="#">TikTok</a> |
     <a href="#">WhatsApp</a>
   </footer>
+
+  <!-- Floating Social Buttons -->
+  <div class="floating-buttons">
+    <a href="https://wa.me/447000000000" class="float-btn whatsapp">WA</a>
+    <a href="https://www.tiktok.com/@yourusername" class="float-btn tiktok">TT</a>
+    <a href="https://instagram.com/yourusername" class="float-btn instagram">IG</a>
+  </div>
 
 </body>
 </html>
