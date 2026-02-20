@@ -21,172 +21,350 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg-main: #fdf7f8;
+      --bg-panel: rgba(255, 255, 255, 0.92);
+      --rose: #d48a8a;
+      --rose-deep: #b86a6a;
+      --rose-soft: #f3d6d6;
+      --text-main: #333333;
+      --text-soft: #666666;
+      --radius-lg: 22px;
+      --shadow-soft: 0 18px 45px rgba(212, 138, 138, 0.18);
+      --shadow-soft-hover: 0 22px 60px rgba(212, 138, 138, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #333;
+      background:
+        radial-gradient(circle at top left, #ffe6ec 0, transparent 55%),
+        radial-gradient(circle at bottom right, #ffecec 0, transparent 55%),
+        var(--bg-main);
+      color: var(--text-main);
       scroll-behavior: smooth;
+    }
+
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 18px 60px;
     }
 
     /* Sticky Navigation */
     nav {
-      background: #ffffff;
-      padding: 15px 20px;
-      text-align: center;
-      border-bottom: 1px solid #f3d6d6;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 10px rgba(212, 138, 138, 0.15);
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to right, rgba(255,255,255,0.96), rgba(255,245,246,0.96));
+      border-bottom: 1px solid var(--rose-soft);
+      box-shadow: 0 10px 30px rgba(212, 138, 138, 0.12);
     }
-    nav a {
-      color: #d48a8a;
-      margin: 0 15px;
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+    }
+    .nav-links a {
+      color: var(--rose);
+      margin-left: 18px;
       text-decoration: none;
       font-weight: 500;
-      letter-spacing: 0.5px;
-      padding-bottom: 5px;
+      letter-spacing: 0.06em;
+      font-size: 13px;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 4px;
       transition: 0.3s;
     }
-    nav a:hover {
-      color: #b56f6f;
-      border-bottom: 2px solid #d48a8a;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--rose-deep));
+      transition: width 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--rose-deep);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
-    /* Smooth Scroll Animations */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards;
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(to bottom, #fff5f5, #ffecec);
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 46px;
-      color: #d48a8a;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 18px;
-      max-width: 600px;
-      margin: 0 auto 20px;
-      color: #555;
-    }
-    .hero button {
-      background: linear-gradient(135deg, #e7b7b7, #d48a8a);
-      color: #fff;
-      padding: 12px 25px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 6px;
-      font-weight: 600;
-      box-shadow: 0 4px 10px rgba(212, 138, 138, 0.3);
-      transition: 0.3s;
-    }
-    .hero button:hover {
-      background: linear-gradient(135deg, #d48a8a, #c97a7a);
-    }
-
-    /* Sections */
+    /* Section Shell */
     section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: auto;
+      margin-top: 40px;
+    }
+    .panel {
+      background: var(--bg-panel);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 32px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(212,138,138,0.16), transparent 55%);
+      pointer-events: none;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      color: var(--rose-deep);
+      margin-bottom: 6px;
+    }
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      margin: 0 0 10px;
+      color: var(--rose-deep);
+    }
+    h1 {
+      font-size: 40px;
     }
     h2 {
-      font-family: 'Playfair Display', serif;
-      color: #d48a8a;
-      font-size: 34px;
-      margin-bottom: 20px;
-      text-align: center;
+      font-size: 28px;
+      text-align: left;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 18px;
     }
 
-    /* Luxury Service Cards */
-    .service-card {
-      background: #fff;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 12px;
-      border: 2px solid #f3d6d6;
-      box-shadow: 0 4px 12px rgba(212, 138, 138, 0.15);
+    /* Hero Layout */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 26px;
+      align-items: center;
+    }
+    .hero-main p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-soft);
+      margin-bottom: 22px;
+    }
+    .hero-tagline {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 10px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #f0c3c3, var(--rose));
+      color: #fff;
+      padding: 11px 22px;
+      border-radius: 999px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(212, 138, 138, 0.45);
       transition: 0.3s;
     }
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 18px rgba(212, 138, 138, 0.35);
-      border-color: #d48a8a;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(212, 138, 138, 0.6);
+    }
+    .btn-ghost {
+      background: transparent;
+      border-radius: 999px;
+      border: 1px solid var(--rose-soft);
+      padding: 10px 18px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--rose);
+      background: rgba(244, 214, 214, 0.25);
+    }
+
+    .hero-side {
+      border-radius: 20px;
+      padding: 20px 18px;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.9), rgba(255,230,234,0.9));
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+    .hero-side::after {
+      content: "De Radiance";
+      position: absolute;
+      bottom: 10px;
+      right: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(184,106,106,0.35);
+    }
+    .hero-highlight {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .pill {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,138,138,0.4);
+      color: var(--rose-deep);
+      background: rgba(255,255,255,0.7);
+    }
+
+    /* Services – premium list */
+    .services-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 26px;
+    }
+    .services-list {
+      border-left: 2px solid var(--rose-soft);
+      padding-left: 18px;
+    }
+    .service-row {
+      padding: 10px 0 14px;
+      border-bottom: 1px solid rgba(243,214,214,0.7);
+      position: relative;
+    }
+    .service-row:last-child {
+      border-bottom: none;
+    }
+    .service-name {
+      font-weight: 600;
+      color: var(--rose-deep);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .service-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffe6ec, var(--rose));
+      box-shadow: 0 0 10px rgba(212,138,138,0.7);
+    }
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+    .services-note {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.6;
     }
 
     /* Gallery */
-    .gallery {
-      text-align: center;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
     }
-    .gallery img {
-      width: 30%;
-      margin: 1%;
-      border-radius: 10px;
-      border: 2px solid #f3d6d6;
-      box-shadow: 0 4px 10px rgba(212, 138, 138, 0.2);
-      transition: 0.3s;
+    .gallery-grid img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid var(--rose-soft);
+      box-shadow: 0 12px 30px rgba(212,138,138,0.25);
+      transition: 0.35s;
+      object-fit: cover;
     }
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 14px rgba(212, 138, 138, 0.35);
+    .gallery-grid img:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 45px rgba(212,138,138,0.4);
     }
 
-    /* Contact Form */
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 26px;
+    }
     form input, form textarea {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      background: #fff;
-      border: 1px solid #f3d6d6;
-      color: #333;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(212, 138, 138, 0.1);
+      padding: 11px 12px;
+      margin: 6px 0 12px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--rose-soft);
+      color: var(--text-main);
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(212, 138, 138, 0.12);
+      font-size: 13px;
     }
-    form button {
-      background: linear-gradient(135deg, #e7b7b7, #d48a8a);
-      color: #fff;
-      padding: 12px 25px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      border-radius: 6px;
-      box-shadow: 0 4px 10px rgba(212, 138, 138, 0.3);
-      transition: 0.3s;
+    form textarea {
+      resize: vertical;
+      min-height: 110px;
     }
-    form button:hover {
-      background: linear-gradient(135deg, #d48a8a, #c97a7a);
+
+    .contact-info {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+    .contact-info strong {
+      color: var(--rose-deep);
     }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 20px;
-      color: #777;
-      font-size: 14px;
-      border-top: 1px solid #f3d6d6;
+      padding: 26px 18px 10px;
+      color: #888;
+      font-size: 12px;
+      border-top: 1px solid var(--rose-soft);
       margin-top: 40px;
     }
     footer a {
-      color: #d48a8a;
+      color: var(--rose);
       text-decoration: none;
       margin: 0 5px;
+      font-weight: 500;
     }
 
     /* Floating Social Buttons */
@@ -196,96 +374,243 @@
       right: 20px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       z-index: 300;
     }
     .social-icon {
-      width: 55px;
-      height: 55px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #e7b7b7, #d48a8a);
+      background: radial-gradient(circle at top left, #ffe6ec, var(--rose));
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
+      font-size: 22px;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(212, 138, 138, 0.4);
+      box-shadow: 0 14px 30px rgba(212, 138, 138, 0.6);
       transition: 0.3s;
     }
     .social-icon:hover {
-      transform: scale(1.12);
-      box-shadow: 0 6px 18px rgba(212, 138, 138, 0.6);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 18px 45px rgba(212, 138, 138, 0.8);
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .hero,
+      .services-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-side {
+        order: -1;
+      }
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .nav-links {
+        width: 100%;
+      }
+      .nav-links a {
+        margin-left: 0;
+        margin-right: 14px;
+      }
     }
   </style>
 </head>
 
 <body>
-
   <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
+    <div class="nav-inner">
+      <div class="brand">De Radiance Retreat</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
   </nav>
 
-  <section class="hero fade-in" id="home">
-    <h1>De Radiance Retreat</h1>
-    <p>Luxury Beauty & Wellness Treatments in Lower Darwen — Facials, Hijama, Massage, Nails, Waxing & More.</p>
-    <a href="#contact"><button>Book Appointment</button></a>
-  </section>
+  <div class="page-wrap">
 
-  <section id="services" class="fade-in">
-    <h2>Our Luxury Services</h2>
+    <!-- HERO -->
+    <section id="home">
+      <div class="panel hero">
+        <div class="hero-main">
+          <div class="hero-tagline">Luxury Beauty & Wellness • Lower Darwen</div>
+          <h1>Radiance, Rejuvenation & Retreat in One Space.</h1>
+          <p>
+            Facials, Hijama, massage, nails, waxing and more — curated treatments in a calm, private and elegant setting,
+            designed for women who want to feel restored, not rushed.
+          </p>
+          <div class="hero-cta">
+            <a href="#contact"><button class="btn-primary">Book Appointment</button></a>
+            <a href="#services"><button class="btn-ghost">View Services</button></a>
+          </div>
+        </div>
 
-    <div class="service-card"><strong>Facials</strong> — Glow-boosting, rejuvenating treatments.</div>
-    <div class="service-card"><strong>Manicure & Pedicure</strong> — Luxury nail care & hydration.</div>
-    <div class="service-card"><strong>Waxing</strong> — Smooth, long-lasting results.</div>
-    <div class="service-card"><strong>Body Massages</strong> — Relaxation, deep tissue & aromatherapy.</div>
-    <div class="service-card"><strong>Threading</strong> — Precision brow shaping.</div>
-    <div class="service-card"><strong>Lashlift & Tint</strong> — Natural enhancement.</div>
-    <div class="service-card"><strong>Hopi Ear Candling</strong> — Relaxing ear therapy.</div>
-    <div class="service-card"><strong>Hijama Cupping Therapy</strong> — Traditional detox treatment.</div>
-  </section>
+        <div class="hero-side">
+          <div class="section-label">At a glance</div>
+          <div class="hero-highlight"><strong>Location:</strong> Lower Darwen, Blackburn</div>
+          <div class="hero-highlight"><strong>Specialities:</strong> Facials, Hijama Cupping, Massage, Nails, Waxing</div>
+          <div class="hero-pills">
+            <div class="pill">Private Studio</div>
+            <div class="pill">Women Only</div>
+            <div class="pill">Luxury Touch</div>
+            <div class="pill">Holistic Care</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="gallery" class="gallery fade-in">
-    <h2>Gallery</h2>
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="panel">
+        <div class="section-label">Treatments</div>
+        <h2>Our Luxury Services</h2>
+        <p class="section-sub">
+          A carefully curated menu of beauty and wellness treatments, blending relaxation, results and ritual.
+        </p>
 
-    <img src="https://i.ibb.co/Xx4NxBjQ/14.png" alt="">
-    <img src="https://i.ibb.co/G4brcrsH/13.png" alt="">
-    <img src="https://i.ibb.co/zWgYSjSc/15.png" alt="">
-    <img src="https://i.ibb.co/Pv2ffS83/17.png" alt="">
-    <img src="https://i.ibb.co/XZ9GFyP5/20.png" alt="">
-    <img src="https://i.ibb.co/KpQXXKwF/21.png" alt="">
-    <img src="https://i.ibb.co/1tbW27FB/3.png" alt="">
-    <img src="https://i.ibb.co/B59mtdT4/4.png" alt="">
-    <img src="https://i.ibb.co/ynwQ6QjL/5.png" alt="">
-    <img src="https://i.ibb.co/G4RNw4JQ/6.png" alt="">
-    <img src="https://i.ibb.co/8DRhBLRZ/7.png" alt="">
-    <img src="https://i.ibb.co/ZzYJ0d0Z/8.png" alt="">
-    <img src="https://i.ibb.co/LdMzCCqT/9.png" alt="">
-    <img src="https://i.ibb.co/NgrYHJ6q/10.png" alt="">
-    <img src="https://i.ibb.co/Q3YbWGzJ/11.png" alt="">
-    <img src="https://i.ibb.co/5WqDKWYW/12.png" alt="">
+        <div class="services-layout">
+          <div class="services-list">
+            <div class="service-row">
+              <div class="service-name">
+                <span class="service-dot"></span> Facials
+              </div>
+              <div class="service-desc">Glow-boosting, rejuvenating facials tailored to your skin’s needs.</div>
+            </div>
 
-  </section>
+            <div class="service-row">
+              <div class="service-name">
+                <span class="service-dot"></span> Manicure &amp; Pedicure
+              </div>
+              <div class="service-desc">Luxury nail care, cuticle work and hydration for hands and feet.</div>
+            </div>
 
-  <section id="contact" class="fade-in">
-    <h2>Contact & Booking</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="4" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+            <div class="service-row">
+              <div class="service-name">
+                <span class="service-dot"></span> Waxing
+              </div>
+              <div class="service-desc">Smooth, long-lasting hair removal with a gentle, professional approach.</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-name">
+                <span class="service-dot"></span> Body Massages
+              </div>
+              <div class="service-desc">Relaxation, deep tissue and aromatherapy massages to release tension.</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-name">
+                <span class="service-dot"></span> Threading
+              </div>
+              <div class="service-desc">Precision brow shaping and facial threading for a clean, defined look.</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-name">
+                <span class="service-dot"></span> Lashlift &amp; Tint
+              </div>
+              <div class="service-desc">Natural lash enhancement for lifted, darker, eye-opening lashes.</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-name">
+                <span class="service-dot"></span> Hopi Ear Candling
+              </div>
+              <div class="service-desc">A calming ear therapy to support relaxation and a sense of lightness.</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-name">
+                <span class="service-dot"></span> Hijama Cupping Therapy
+              </div>
+              <div class="service-desc">Traditional detox cupping to support circulation, relief and renewal.</div>
+            </div>
+          </div>
+
+          <div class="services-note">
+            <strong>Every treatment is by appointment only</strong>, allowing time, care and privacy for each client.
+            For full pricing, availability and bespoke treatment combinations, please get in touch using the form below
+            or via WhatsApp.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="panel">
+        <div class="section-label">Inside the retreat</div>
+        <h2>Gallery</h2>
+        <p class="section-sub">
+          A glimpse into the space, details and treatments that make De Radiance Retreat feel like a true escape.
+        </p>
+
+        <div class="gallery-grid">
+          <img src="https://i.ibb.co/Xx4NxBjQ/14.png" alt="">
+          <img src="https://i.ibb.co/G4brcrsH/13.png" alt="">
+          <img src="https://i.ibb.co/zWgYSjSc/15.png" alt="">
+          <img src="https://i.ibb.co/Pv2ffS83/17.png" alt="">
+          <img src="https://i.ibb.co/XZ9GFyP5/20.png" alt="">
+          <img src="https://i.ibb.co/KpQXXKwF/21.png" alt="">
+          <img src="https://i.ibb.co/1tbW27FB/3.png" alt="">
+          <img src="https://i.ibb.co/B59mtdT4/4.png" alt="">
+          <img src="https://i.ibb.co/ynwQ6QjL/5.png" alt="">
+          <img src="https://i.ibb.co/G4RNw4JQ/6.png" alt="">
+          <img src="https://i.ibb.co/8DRhBLRZ/7.png" alt="">
+          <img src="https://i.ibb.co/ZzYJ0d0Z/8.png" alt="">
+          <img src="https://i.ibb.co/LdMzCCqT/9.png" alt="">
+          <img src="https://i.ibb.co/NgrYHJ6q/10.png" alt="">
+          <img src="https://i.ibb.co/Q3YbWGzJ/11.png" alt="">
+          <img src="https://i.ibb.co/5WqDKWYW/12.png" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="panel">
+        <div class="section-label">Bookings & enquiries</div>
+        <h2>Contact & Booking</h2>
+        <p class="section-sub">
+          Share a few details and we’ll get back to you with available times and treatment options.
+        </p>
+
+        <div class="contact-grid">
+          <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="4" placeholder="Your Message or Treatment Request" required></textarea>
+            <button type="submit" class="btn-primary">Send Message</button>
+          </form>
+
+          <div class="contact-info">
+            <p><strong>Prefer WhatsApp?</strong><br>
+              Message directly via the floating WhatsApp icon on the screen.</p>
+            <p><strong>Location:</strong><br>
+              Private studio in Lower Darwen, Blackburn (full address shared upon booking).</p>
+            <p><strong>Opening:</strong><br>
+              By appointment only — flexible daytime and selected evening slots.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
   <footer>
     © 2026 De Radiance Retreat • All Rights Reserved  
     <br>
-    <a href="#">Instagram</a> |
-    <a href="#">TikTok</a> |
-    <a href="#">WhatsApp</a>
+    <a href="https://www.instagram.com/deradianceretreatltd/" target="_blank">Instagram</a> |
+    <a href="https://www.tiktok.com/@deradianceretreatltd" target="_blank">TikTok</a> |
+    <a href="https://wa.me/447902700222" target="_blank">WhatsApp</a>
   </footer>
 
   <!-- Floating Social -->
