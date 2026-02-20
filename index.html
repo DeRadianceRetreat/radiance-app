@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- PWA setup -->
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <script>
     if ("serviceWorker" in navigator) {
@@ -14,24 +14,140 @@
 
   <title>De Radiance Retreat | Luxury Beauty & Wellness</title>
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:20px; }
-    nav { margin-bottom:20px; }
-    nav a { margin-right:15px; text-decoration:none; color:#333; font-weight:500; }
-    nav a:hover { text-decoration:underline; }
-    section { margin-bottom:40px; }
-    h1, h2 { color:#222; }
-    .gallery img { max-width:120px; margin:5px; border-radius:4px; }
-    footer { margin-top:60px; text-align:center; font-size:14px; color:#777; }
-    form input, form textarea { display:block; margin:5px 0; width:100%; padding:8px; box-sizing:border-box; }
-    form button { padding:10px 20px; background:#333; color:#fff; border:none; cursor:pointer; }
-    form button:hover { background:#555; }
-    button { cursor:pointer; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: #fff;
+    }
+
+    /* Navigation */
+    nav {
+      background: #111;
+      padding: 15px 20px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+    nav a {
+      color: #d4af37;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(to bottom, #000, #111);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 20px;
+      color: #ccc;
+    }
+    .hero button {
+      background: #d4af37;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .hero button:hover {
+      background: #b8922a;
+    }
+
+    /* Sections */
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: #d4af37;
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Services */
+    ul {
+      list-style: none;
+      padding: 0;
+      line-height: 1.8;
+      font-size: 18px;
+      color: #ddd;
+    }
+
+    /* Gallery */
+    .gallery img {
+      width: 30%;
+      margin: 1%;
+      border-radius: 6px;
+      border: 2px solid #333;
+    }
+
+    /* Contact Form */
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      background: #111;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 4px;
+    }
+    form button {
+      background: #d4af37;
+      color: #000;
+      padding: 12px 25px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+    form button:hover {
+      background: #b8922a;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 14px;
+      border-top: 1px solid #222;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #d4af37;
+      text-decoration: none;
+      margin: 0 5px;
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- Navigation -->
   <nav>
     <a href="#home">Home</a>
     <a href="#services">Services</a>
@@ -39,56 +155,49 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Hero -->
-  <section id="home">
-    <h1>Luxury Beauty & Wellness Sanctuary</h1>
-    <p>Facials, Hijama Cupping, Body Massage, Waxing, Nails & Advanced Skin Treatments in Lower Darwen.</p>
+  <section class="hero" id="home">
+    <h1>De Radiance Retreat</h1>
+    <p>Luxury Beauty & Wellness Treatments in Lower Darwen — Facials, Hijama, Massage, Nails, Waxing & More.</p>
     <a href="#contact"><button>Book Appointment</button></a>
   </section>
 
-  <!-- Services -->
   <section id="services">
-    <h2>Our Services</h2>
+    <h2>Our Luxury Services</h2>
     <ul>
-      <li><strong>Facials</strong> — Glow-boosting treatments tailored to your skin.</li>
-      <li><strong>Manicure</strong> — Luxury nail shaping, buffing & polish.</li>
-      <li><strong>Pedicure</strong> — Relaxing foot care & deep hydration.</li>
-      <li><strong>Waxing</strong> — Smooth, long-lasting hair removal.</li>
+      <li><strong>Facials</strong> — Glow-boosting, rejuvenating treatments.</li>
+      <li><strong>Manicure & Pedicure</strong> — Luxury nail care & hydration.</li>
+      <li><strong>Waxing</strong> — Smooth, long-lasting results.</li>
       <li><strong>Body Massages</strong> — Relaxation, deep tissue & aromatherapy.</li>
-      <li><strong>Threading</strong> — Precision brow & facial hair shaping.</li>
-      <li><strong>Lashlift</strong> — Natural curl enhancement for lashes.</li>
-      <li><strong>Eyebrow & Eyelash Tint</strong></li>
-      <li><strong>Hopi Ear Candling</strong> — Relaxing ear cleansing therapy.</li>
-      <li><strong>Hijama Cupping Therapy</strong> — Detoxifying traditional therapy.</li>
+      <li><strong>Threading</strong> — Precision brow shaping.</li>
+      <li><strong>Lashlift & Tint</strong> — Natural enhancement.</li>
+      <li><strong>Hopi Ear Candling</strong> — Relaxing ear therapy.</li>
+      <li><strong>Hijama Cupping Therapy</strong> — Traditional detox treatment.</li>
     </ul>
   </section>
 
-  <!-- Gallery -->
   <section id="gallery" class="gallery">
     <h2>Gallery</h2>
-    <!-- Replace these with your real images -->
-    <img src="image1.jpg" alt="Gallery Image 1">
-    <img src="image2.jpg" alt="Gallery Image 2">
-    <img src="image3.jpg" alt="Gallery Image 3">
+    <img src="image1.jpg" alt="">
+    <img src="image2.jpg" alt="">
+    <img src="image3.jpg" alt="">
   </section>
 
-  <!-- Contact -->
   <section id="contact">
     <h2>Contact & Booking</h2>
-    <form action="#" method="post">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
       <button type="submit">Send Message</button>
     </form>
   </section>
 
-  <!-- Footer -->
   <footer>
-    © 2026 De Radiance Retreat. All Rights Reserved. <br/>
-    <a href="https://www.instagram.com" target="_blank">Instagram</a> |
-    <a href="https://www.tiktok.com" target="_blank">TikTok</a> |
-    <a href="https://wa.me" target="_blank">WhatsApp</a>
+    © 2026 De Radiance Retreat • All Rights Reserved  
+    <br>
+    <a href="#">Instagram</a> |
+    <a href="#">TikTok</a> |
+    <a href="#">WhatsApp</a>
   </footer>
 
 </body>
